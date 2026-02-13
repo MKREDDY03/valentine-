@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Yamu Baby ❤️</title>
+
+<style>
+body{
+ margin:0;
+ font-family:Arial;
+ background:#111;
+ color:white;
+ text-align:center;
+}
+
+/* WhatsApp Chat */
+#chat{
+ padding:15px;
+}
+.msg{
+ background:#25D366;
+ padding:10px;
+ margin:10px;
+ border-radius:12px;
+ width:70%;
+ text-align:left;
+}
+
+/* Game hearts */
+.heart{
+ position:absolute;
+ font-size:24px;
+ cursor:pointer;
+}
+
+/* Fireworks */
+.fire{
+ position:absolute;
+ width:6px;height:6px;
+ border-radius:50%;
+}
+
+/* Sections */
+section{display:none;padding:20px}
+#map iframe{width:100%;height:250px;border-radius:10px}
+button{padding:10px 20px;margin:10px;border:none;border-radius:8px}
+</style>
+</head>
+
+<body>
+
+<!-- CHAT INTRO -->
+<div id="chat">
+<div class="msg">Hey Yamu Baby ❤️</div>
+<div class="msg">I made something for you...</div>
+<button onclick="start()">Open</button>
+</div>
+
+<!-- MAIN -->
+<section id="main">
+
+<h1>Happy Valentine's Day ❤️</h1>
+
+<!-- Voice AI read -->
+<button onclick="speak()">Play Message 🔊</button>
+
+<!-- Love Game -->
+<h3>Catch 10 Hearts 😘</h3>
+<div id="score">Score:0</div>
+
+<!-- Map -->
+<div id="map">
+<h3>Where our story shines 🌍</h3>
+<iframe src="https://maps.google.com/maps?q=17.3850,78.4867&z=15&output=embed"></iframe>
+</div>
+
+<button onclick="proposal()">Final Surprise 💍</button>
+
+</section>
+
+<div id="final" style="display:none">
+<h1>Yamu ❤️</h1>
+<h2>Will You Be Mine Forever?</h2>
+</div>
+
+<script>
+
+/* Start */
+function start(){
+ document.getElementById("chat").style.display="none";
+ document.getElementById("main").style.display="block";
+ startGame();
+}
+
+/* AI Voice */
+function speak(){
+ let msg="Yamu, you make my world brighter. Happy Valentines Day ❤️";
+ let u=new SpeechSynthesisUtterance(msg);
+ speechSynthesis.speak(u);
+}
+
+/* Heart Game */
+let score=0;
+function startGame(){
+ setInterval(()=>{
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*90+"vw";
+  h.style.top=Math.random()*90+"vh";
+  h.onclick=()=>{
+    score++;
+    document.getElementById("score").innerHTML="Score:"+score;
+    h.remove();
+  }
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),3000);
+ },800);
+}
+
+/* Fireworks */
+function fireworks(){
+ for(let i=0;i<150;i++){
+  let f=document.createElement("div");
+  f.className="fire";
+  f.style.left=Math.random()*100+"vw";
+  f.style.top=Math.random()*100+"vh";
+  f.style.background=`hsl(${Math.random()*360},100%,50%)`;
+  document.body.appendChild(f);
+  setTimeout(()=>f.remove(),1500);
+ }
+}
+
+/* Proposal */
+function proposal(){
+ fireworks();
+ document.getElementById("main").style.display="none";
+ document.getElementById("final").style.display="block";
+}
+
+</script>
+</body>
+</html>
